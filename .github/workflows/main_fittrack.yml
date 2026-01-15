@@ -55,13 +55,27 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6F6B2C6023544ADA9A27E32507368FDE }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FE6BDC17400F43DC83F9D195447777B3 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FD231AC1B36D491DBF78D3A0D8A94B04 }}
-
+          
+      - name: Zip artifact for deployment
+        run: |
+          cd server
+          zip -r ../release.zip .
+          cd ..
+  
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-app
+          path: release.zip
+          
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'fittrack'
-          slot-name: 'Production'
-          package: './server'
-
-          
+            app-name: 'fittrack'
+            slot-name: 'Production'
+            publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_XXXXXXXXXX }}
+            package: release.zip
+  
+            
+  
