@@ -58,9 +58,10 @@ jobs:
         with:
           app-name: 'fittrack'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_XXXXXXXXXX }}
+          publish-profile: ${{ secrets.AZURE_PUBLISHPROFILE }}
           package: node-app.zip
   
+
 
 
 
