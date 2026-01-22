@@ -28,8 +28,6 @@ node_modules(react)/
 public/
 eslint.config.js
 index.html
-package-lock.json
-package.json
 postcss.config.js
 tailwind.config.js
 readme.md

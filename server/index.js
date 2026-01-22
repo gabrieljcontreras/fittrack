@@ -29,8 +29,10 @@ app.use("/api/goals", goalRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/ai-coach", aiCoachRoutes);
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
 
